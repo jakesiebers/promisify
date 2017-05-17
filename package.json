@@ -1,0 +1,16 @@
+{
+  "name": "@withjoy/promisify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://jake-siebers@bitbucket.org/jake-siebers/promisify.git"
+  },
+  "author": "Jake Siebers",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/jake-siebers/promisify#readme"
+}
