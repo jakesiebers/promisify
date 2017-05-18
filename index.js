@@ -1,26 +1,28 @@
 
 const promisify = f => function() {
-  return new Promise((resolve, reject) => {
 
-    const callback = arguments[f.length - 1];
+  const callback = arguments[f.length - 1];
 
-    arguments[f.length - 1] = (err, data) => {
-      if (callback){
-        callback(err, data);
-      } else {
+  if (callback) {
+    return f.apply(this, Array.from(arguments));
+  } else {
+    return new Promise((resolve, reject) => {
+
+      arguments[f.length - 1] = (err, data) => {
         if (err) {
           reject(err);
         } else {
           resolve(data);
         }
-      }
-    };
+      };
 
-    arguments.length = f.length;
+      arguments.length = f.length;
 
-    f.apply(this, Array.from(arguments));
+      f.apply(this, Array.from(arguments));
 
-  });
+    });
+  }
+
 }
 
 module.exports = promisify;
