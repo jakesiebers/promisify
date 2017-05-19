@@ -39,8 +39,7 @@ Test.prototype.throwError = promisify(function(callback) {
 const arrowFunc = promisify(callback => callback(null, 2));
 
 
-// Run tests
-describe('Service tests', () => {
+describe('Promisify tests', () => {
   it('this is maintained', () => (new Test()).getValue().should.eventually.equal(5));
   it('Can pass and arg', () => (new Test()).firstArg(4).should.eventually.equal(4));
   it('Can use deprecated callback for backwards compatability', () => (new Promise((resolve, reject) => (new Test()).firstArg(3, (err, data) => resolve(data)))).should.eventually.equal(3));
@@ -49,4 +48,16 @@ describe('Service tests', () => {
   it('Maintain This internal Arrow Func', () => (new Test()).maintainThisInternalArrowFunc().should.eventually.equal(5));
   it('Promise rejected on error', () => (new Test()).throwError().should.eventually.be.rejected);
   it('Error is passed to deprecated callback for backwards compatability', () => (new Promise((resolve, reject) => (new Test()).throwError((err, data) => (err ? reject(err) : resolve(data))))).should.eventually.be.rejected);
+});
+
+
+
+const self = promisify.inverse(function(x) {
+  return Promise.resolve(x);
+});
+
+
+describe('Promisify.inverse tests', () => {
+  it('use callback', () => (new Promise((resolve, reject) => self(5, (err, data) => (err ? reject(err) : resolve(data))))).should.eventually.equal(5));
+  it('use promise', () => self(4).should.eventually.equal(4));
 });

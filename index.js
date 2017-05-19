@@ -25,4 +25,21 @@ const promisify = f => function() {
 
 }
 
+promisify.inverse = f => function() {
+  
+  const callback = arguments[f.length];
+
+  const res = f.apply(this, Array.from(arguments));
+
+  if (callback) {
+    res.then(
+      data => callback(null, data),
+      callback
+    );
+  } else {
+    return res;
+  }
+
+}
+
 module.exports = promisify;
