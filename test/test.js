@@ -60,4 +60,5 @@ const self = promisify.inverse(function(x) {
 describe('Promisify.inverse tests', () => {
   it('use callback', () => (new Promise((resolve, reject) => self(5, (err, data) => (err ? reject(err) : resolve(data))))).should.eventually.equal(5));
   it('use promise', () => self(4).should.eventually.equal(4));
+  it('no arg', () => self().should.eventually.equal(undefined));
 });
