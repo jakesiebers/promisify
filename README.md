@@ -23,4 +23,4 @@ See test/test.js for all the supported cases. If you think of another then pleas
 
 Promisify.inverse is for making a new function (that returns a promise) backwards compatible.
 
-It can be confusing and disruptive to add a function that returns a promise amongst dozens of other functions that take callbacks but we have to do it to move forward. Wrapping your new function in promisify.inverse gives you the best of both worlds. If someone accidentally passes a callback with your function it will still work.
+It can be confusing and disruptive to add a function that returns a promise amongst dozens of other functions that take callbacks but we have to do it to move forward. (e.g. adding one function that takes a promise in the eventsmanager) Wrapping your new function in promisify.inverse gives you the best of both worlds. If someone accidentally passes a callback with your function it will still work.
