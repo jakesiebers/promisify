@@ -26,10 +26,10 @@ const promisify = f => function() {
 }
 
 promisify.inverse = f => function() {
-  
+
   const callback = arguments[f.length];
 
-  const res = f.apply(this, Array.from(arguments));
+  const res = Promise.resolve().then(() => f.apply(this, Array.from(arguments)));
 
   if (callback) {
     res.then(
