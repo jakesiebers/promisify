@@ -25,7 +25,7 @@ const promisify = f => function() {
     });
   }
 
-}
+};
 
 promisify.inverse = f => function() {
 
@@ -42,6 +42,6 @@ promisify.inverse = f => function() {
     return res;
   }
 
-}
+};
 
 module.exports = promisify;
