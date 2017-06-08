@@ -1,4 +1,6 @@
 
+const Promise = require('bluebird');
+
 const promisify = f => function() {
 
   const callback = arguments[f.length - 1];
